@@ -8,9 +8,12 @@ for distributed High Throughput Computing.
 Running iDDC model inference is a heavy task. You need a lot of different data, a lot of tools,
 a lot of computational fire power and a lot of scripting to glue all of this together.
 
+That is not in the reach in many people interested in statistical phylogeography.
+
 Here we use this awesome HTC resource and we glue Quetzal tools (Quetzal-CoaTL,
-  Quetzal-CRUMBS, Quetzal-EGGS and Quetzal-NEST) together for you! Hopefully it
-  will make your life easier and your iDDC inference more seamless.
+Quetzal-CRUMBS, Quetzal-EGGS and Quetzal-NEST) together for you, so you can run
+a spatially explicit inference more swiftly! Hopefully it
+will make your life easier and your iDDC inference more reachable.
 
 >  The [OSG](https://opensciencegrid.org/) is a consortium of research collaborations, campuses, national
 > laboratories and software providers dedicated to the advancement of all open
@@ -22,8 +25,8 @@ Here we use this awesome HTC resource and we glue Quetzal tools (Quetzal-CoaTL,
 
 1. You need [an account on Open Science Grid](https://opensciencegrid.org/).
 2. Then connect to your login node with e.g. `ssh user@login.osgconnect.net`
-3. Clone this repository with `git clone https://github.com/Becheler/iDDC_on_OSG.git`
-4. Enter the repo with `cd iDDC_on_OSG`
+3. Clone this repository with `git clone https://github.com/Becheler/quetzal_on_OSG.git`
+4. Enter the repo with `cd quetzal_on_OSG`
 5. Initialize some symbolic links with `chmod u+x src/init.sh && ./src/init.sh`
 6. Run the example inference with 10 simulations and 2 failure repetitions by running:
      - `./generate_DAG 10 2 bio,dem > workflow.dag`
