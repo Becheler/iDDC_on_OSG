@@ -25,14 +25,18 @@ Help()
 
 echo "JOB 1-get-gbif src/DAG/1-get-gbif.condor"
 echo "JOB 2-sdm src/DAG/2-sdm.condor"
+echo "PARENT 1-get-gbif CHILD 2-sdm"
 
-# takes 1 argument, the number of simulations
 for i in $(seq "$1")
 do
    echo "JOB A$i src/DAG/A.condor NOOP"
    echo "VARS A$i i=\"$i\""
+   echo "PARENT 2-sdm CHILD A$i"
+
+   echo "Retry A$i $2"
+
    echo "JOB B$i src/DAG/B.condor NOOP"
    echo "VARS B$i i=\"$i\""
    echo "PARENT A$i CHILD B$i"
-   echo "Retry A$i $2"
+
 done
