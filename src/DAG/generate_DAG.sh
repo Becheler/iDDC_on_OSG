@@ -23,8 +23,8 @@ Help()
 ############################################################
 ############################################################
 
-echo "JOB 1-get-gbif src/DAG/1-get-gbif.condor NOOP"
-echo "JOB 2-sdm src/DAG/2-sdm.condor NOOP"
+echo "JOB 1-get-gbif src/DAG/1-get-gbif.condor"
+echo "JOB 2-sdm src/DAG/2-sdm.condor"
 
 # takes 1 argument, the number of simulations
 for i in $(seq "$1")
