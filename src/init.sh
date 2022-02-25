@@ -1,3 +1,5 @@
+#!/bin/bash
+
 chmod u+x src/DAG/generate_DAG.sh
 ln -s src/DAG/generate_DAG.sh generate_DAG
 

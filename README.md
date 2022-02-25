@@ -28,8 +28,9 @@ will make your life easier and your iDDC inference more reachable.
 3. Clone this repository with `git clone https://github.com/Becheler/quetzal_on_OSG.git`
 4. Enter the repo with `cd quetzal_on_OSG`
 5. Initialize some symbolic links with `chmod u+x src/init.sh && ./src/init.sh`
+6. Make an output directory and enter it: `mkdir output && cd output`
 6. Run the example inference with 10 simulations and 2 failure repetitions by running:
-     - `./generate_DAG 10 2 bio,dem > workflow.dag`
+     - `./../generate_DAG 10 2 bio,dem > workflow.dag`
      - submit with `condor_submit_dag workflow.dag`
      - assess the advancement with `condor_watch_q`
 7. Once the simulations are done:
