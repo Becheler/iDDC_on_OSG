@@ -23,8 +23,8 @@ Help()
 ############################################################
 ############################################################
 
-echo "JOB GBIF ../src/DAG/1-get-gbif.condor"
-echo "JOB SDM ../src/DAG/2-sdm.condor"
+echo "JOB GBIF src/DAG/1-get-gbif.condor DIR output"
+echo "JOB SDM src/DAG/2-sdm.condor DIR output"
 echo "PARENT GBIF CHILD SDM"
 
 for i in $(seq "$1")
