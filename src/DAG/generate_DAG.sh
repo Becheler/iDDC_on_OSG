@@ -29,8 +29,8 @@ if [ "$1" == "-h" ]; then
 fi
 
 
-echo "JOB GBIF src/DAG/1-get-gbif.condor DIR output"
-echo "JOB SDM src/DAG/2-sdm.condor DIR output"
+echo "JOB GBIF ../src/DAG/1-get-gbif.condor"
+echo "JOB SDM ../src/DAG/2-sdm.condor"
 echo "PARENT GBIF CHILD SDM"
 
 for i in $(seq "$1")
