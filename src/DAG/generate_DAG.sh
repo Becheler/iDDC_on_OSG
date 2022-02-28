@@ -29,9 +29,9 @@ if [ "$1" == "-h" ]; then
 fi
 
 
-echo "JOB GET-GBIF src/DAG/1-get-gbif.condor"
-echo "JOB VIS-GBIF src/DAG/2-visualize-gbif.condor"
-echo "JOB SDM      src/DAG/3-sdm.condor"
+echo "JOB GET-GBIF ../src/DAG/1-get-gbif.condor"
+echo "JOB VIS-GBIF ../src/DAG/2-visualize-gbif.condor"
+echo "JOB SDM      ../src/DAG/3-sdm.condor"
 
 echo "PARENT GET-GBIF CHILD VIS-GBIF"
 echo "PARENT GET-GBIF CHILD SDM"
