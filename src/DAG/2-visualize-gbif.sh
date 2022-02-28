@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 -m crumbs.get_chelsa \
-      --points input-files/sampling_points.shp \
+      --points sampling_points.shp \
       --variables "dem" \
       --timesID "20" \
       --margin 2.0 \

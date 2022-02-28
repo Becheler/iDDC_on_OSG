@@ -52,4 +52,5 @@ The following input files are defined by the user and should be placed in the `i
 
 ### Debugging
 
-* If job on hold, use `condor_q -better-analyze <JOB-ID>` to debug wrong file paths (file or folder not found) 
+* If job fails, check `cat *out` to see if there is any executable path error.
+* If job on hold, use `condor_q -better-analyze <JOB-ID>` to debug wrong file paths (file or folder not found).

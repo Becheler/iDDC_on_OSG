@@ -8,7 +8,7 @@ should_transfer_files  = YES
 WhenToTransferOutput   = ON_EXIT
 initialdir             = output-files
 
-transfer_input_files   = ../input-files/sampling-points
+transfer_input_files   = 1-gbif-occurrences
 
 transfer_output_files  = suitability.tif, suitability.gif
 transfer_output_remaps = "suitability.tif = 3-sdm/suitability.tif" "suitability.gif = 3-sdm/suitability.gif"
