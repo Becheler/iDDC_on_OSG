@@ -1,0 +1,22 @@
+universe               = vanilla
+executable             = ../src/DAG/2-visualize-gbif.sh
+
+Requirements           = HAS_SINGULARITY == TRUE
++SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
+
+should_transfer_files  = YES
+WhenToTransferOutput   = ON_EXIT
+initialdir             = output-files
+
+transfer_input_files   = 1-gbif-occurrences
+
+transfer_output_files  = "occurrences.gif"
+transfer_output_remaps = "occurrences.gif = 2-visualize-gbif/occurrences.gif"
+
+output                 = 2-visualize-gbif.out
+error                  = 2-visualize-gbif.err
+log                    = 2-visualize-gbif.log
+
+request_cpus           = 1
+
+queue

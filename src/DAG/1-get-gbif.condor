@@ -1,16 +1,22 @@
 universe               = vanilla
 executable             = ../src/DAG/1-get-gbif.sh
+
 Requirements           = HAS_SINGULARITY == TRUE
 +SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
+
 should_transfer_files  = YES
 WhenToTransferOutput   = ON_EXIT
-transfer_input_files   = ../input-files/sampling-points/sampling-points.shp, ../input-files/sampling-points/sampling-points.shx, ../input-files/sampling-points/sampling-points.dbf, ../input-files/sampling-points/sampling-points.prj
-transfer_output_remaps = "1-get-gbif-output = output-files/1-get-gbif"
-transfer_output_files  = "1-get-gbif-output"
-output                 = output-files/1-get-gbif.out
-error                  = output-files/1-get-gbif.err
-log                    = output-files/1-get-gbif.log
+initialdir             = output-files
+
+transfer_input_files   = ../input-files/sampling-points/
+
+transfer_output_files  = "occurrences"
+transfer_output_remaps = "occurrences = 1-gbif-occurrences"
+
+output                 = 1-get-gbif.out
+error                  = 1-get-gbif.err
+log                    = 1-get-gbif.log
+
 request_cpus           = 1
-request_memory         = 12GB
-request_disk           = 12GB
+
 queue

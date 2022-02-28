@@ -49,3 +49,7 @@ The following input files are defined by the user and should be placed in the `i
 - `EGG.conf`: configuration file for the quetzal-EGG used - unknown parameter values will be rewritten by the ABC pipeline
 - `sample.csv`: file mapping sampled gene copies IDS to their latitude longitude sampling points
 - `imap.txt`: IMAP file from BPP mapping individuals to putative populations for computing summary statistics
+
+### Debugging
+
+* If job on hold, use `condor_q -better-analyze <JOB-ID>` to debug wrong file paths (file or folder not found) 

@@ -1,0 +1,22 @@
+universe               = vanilla
+executable             = ../src/DAG/3-sdm.sh
+
+Requirements           = HAS_SINGULARITY == TRUE
++SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
+
+should_transfer_files  = YES
+WhenToTransferOutput   = ON_EXIT
+initialdir             = output-files
+
+transfer_input_files   = ../input-files/sampling-points
+
+transfer_output_files  = suitability.tif, suitability.gif
+transfer_output_remaps = "suitability.tif = 3-sdm/suitability.tif" "suitability.gif = 3-sdm/suitability.gif"
+
+output                 = 3-sdm.out
+error                  = 3-sdm.err
+log                    = 3-sdm.log
+
+request_cpus           = 1
+
+queue
