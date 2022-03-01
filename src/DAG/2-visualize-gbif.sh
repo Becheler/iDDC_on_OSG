@@ -7,6 +7,6 @@ python3 -m crumbs.get_chelsa \
       --margin 2.0
 
 python3 -m crumbs.animate chelsa_stack_dem.tif \
-      --gbif 1-gbif-occurrences/occurrences.shp \
+      --gbif occurrences.shp \
       --no-DDD \
       --output occurrences.gif
