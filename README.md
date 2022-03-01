@@ -52,5 +52,8 @@ The following input files are defined by the user and should be placed in the `i
 
 ### Debugging
 
-* If job fails, check `cat *out` to see if there is any executable path error.
-* If job on hold, use `condor_q -better-analyze <JOB-ID>` to debug wrong file paths (file or folder not found).
+* Check progress of scheduled jobs with `condor_q` or `condor_watch_q`
+* If a job fails, check `cat *out` to see if there is any executable path error.
+* If a job is hold, something is wrong:
+    - use `condor_q -nobatch` to get the ID of the job being on hold
+    - use `condor_q -better-analyze <JOB-ID>` to check for bug reasons (generally wrong paths or files not found)
