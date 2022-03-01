@@ -10,7 +10,7 @@ initialdir             = output-files
 
 transfer_input_files   = ../../input-files/sampling-points/
 
-transfer_output_files  = "occurrences"
+transfer_output_files  = occurrences
 transfer_output_remaps = "occurrences = 1-gbif-occurrences"
 
 output                 = 1-get-gbif.out
