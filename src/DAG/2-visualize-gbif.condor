@@ -11,7 +11,7 @@ initialdir             = output-files
 transfer_input_files   = ../../input-files/sampling-points/, 1-gbif-occurrences/
 
 transfer_output_files  = occurrences.gif
-transfer_output_remaps = "occurrences.gif = 2-visualize-gbif/occurrences.gif"
+transfer_output_remaps = "occurrences.gif = 2-visualize-gbif.gif"
 
 output                 = 2-visualize-gbif.out
 error                  = 2-visualize-gbif.err
