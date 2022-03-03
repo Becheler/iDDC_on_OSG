@@ -9,5 +9,5 @@ python3 -m crumbs.sdm \
       --cleanup \
       --output suitability.tif
 
-python3 -m crumbs.animate suitability.tif \
+python3 -m crumbs.animate sdm_outputs/suitability.tif \
       --output suitability.gif
