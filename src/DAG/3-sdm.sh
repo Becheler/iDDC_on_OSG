@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 -m crumbs.sdm \
-      --points 1-gbif-occurrences/occurrences.shp \
+      --presence 1-gbif-occurrences/occurrences.shp \
       --variables dem \
       --background 200 \
       --times $(seq -s ',' 19 1 20) \
