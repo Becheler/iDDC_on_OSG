@@ -12,9 +12,9 @@ arguments                = $(t)
 
 transfer_input_files   = ../../input-files/sampling-points/
 
-output                 = 3-get-chelsa.out
-error                  = 3-get-chelsa.err
-log                    = 3-get-chelsa.log
+output                 = 3-get-chelsa/$(t).out
+error                  = 3-get-chelsa/$(t).err
+log                    = 3-get-chelsa/$(t).log
 
 request_cpus           = 1
 
