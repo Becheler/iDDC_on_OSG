@@ -13,7 +13,7 @@ That is not in the reach in many people interested in statistical phylogeography
 Here we use this awesome HTC resource and we glue Quetzal tools (Quetzal-CoaTL,
 Quetzal-CRUMBS, Quetzal-EGGS and Quetzal-NEST) together for you, so you can run
 a spatially explicit inference more swiftly! Hopefully it
-will make your life easier and your iDDC inference more reachable.
+will make your life easier and your iDDC goals more reachable.
 
 >  The [OSG](https://opensciencegrid.org/) is a consortium of research collaborations, campuses, national
 > laboratories and software providers dedicated to the advancement of all open
@@ -29,14 +29,14 @@ will make your life easier and your iDDC inference more reachable.
 4. Enter the repo with `cd quetzal_on_OSG`
 5. Initialize some symbolic links with `chmod u+x src/init.sh && ./src/init.sh`
 6. Make an output directory and enter it: `mkdir output && cd output`
-6. Run the example inference with 10 simulations and 2 failure repetitions by running:
-     - `./../generate_DAG 10 2 bio,dem > workflow.dag`
-     - submit with `condor_submit_dag workflow.dag`
+7. Run the example inference with 10 simulations, 2 repetitions in case of failure, and a SDM projected from the LGM (`-199`) to today (`20`):
+     - `./../generate_DAG 10 2 $(seq -s ' ' -199 1 20) > flow.dag`
+     - submit with `condor_submit_dag flow.dag`
      - assess the advancement with `condor_watch_q`
-7. Once the simulations are done:
+8. Once the simulations are done:
    - retrieve summary statistics: `sh src/post-analysis/get_sumstats.sh`
    - retrieve parameters table: `sh src/post-analysis/get_param_table.sh`
-8. Use ABC-RF package (CRAN) to perform inference!
+9. Use ABC-RF package (CRAN) to perform inference!
 
 ### Changing the user input
 

@@ -12,6 +12,7 @@ dislay_help()
    echo "positional parameters:"
    echo "<integer>   The number of demogenetic simulations."
    echo "<integer>   The number of repetitions if simulation failed."
+   echo "<array>     The space delimited array of CHELSA timesID for SDM"
    echo "options:"
    echo "h     Print this Help."
    echo
@@ -28,13 +29,27 @@ if [ "$1" == "-h" ]; then
   exit 0
 fi
 
+nb_sim=$1
+shift
+nb_rep=$1
+shift
+timesID=("$@")
 
-echo "JOB GET-GBIF ../src/DAG/1-get-gbif.condor"
-echo "JOB VIS-GBIF ../src/DAG/2-visualize-gbif.condor"
-echo "JOB SDM      ../src/DAG/3-sdm.condor"
+echo "JOB GET-GBIF   ../src/DAG/1-get-gbif.condor"
+echo "JOB VIS-GBIF   ../src/DAG/2-visualize-gbif.condor"
 
 echo "PARENT GET-GBIF CHILD VIS-GBIF"
 echo "PARENT GET-GBIF CHILD SDM"
+
+for t in "${timesID[@]}"
+do
+   echo "JOB GET-CHELSA-$t ../src/DAG/3-get-chelsa.condor"
+   echo "VARS GET-CHELSA-$t t=\"$t\""
+   echo "PARENT GET-GBIF CHILD GET-CHELSA-$t"
+   echo "PARENT CHILD GET-CHELSA-$t CHILD SDM"
+done
+
+echo "JOB SDM        ../src/DAG/4-sdm.condor"
 
 for i in $(seq "$1")
 do
@@ -47,5 +62,4 @@ do
    echo "JOB B$i ../src/DAG/B.condor NOOP"
    echo "VARS B$i i=\"$i\""
    echo "PARENT A$i CHILD B$i"
-
 done

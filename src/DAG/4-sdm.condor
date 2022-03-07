@@ -8,9 +8,9 @@ should_transfer_files  = YES
 WhenToTransferOutput   = ON_EXIT
 initialdir             = output-files
 
-transfer_input_files   = 1-gbif-occurrences
+transfer_input_files   = 1-gbif-occurrences 3-get-chelsa
 
-transfer_output_files  =sdm_outputs/suitability.tif, suitability.gif
+transfer_output_files  =  sdm_outputs/suitability.tif, suitability.gif
 transfer_output_remaps = "sdm_outputs/suitability.tif = 3-sdm/suitability.tif" "suitability.gif = 3-sdm/suitability.gif"
 
 output                 = 3-sdm.out
