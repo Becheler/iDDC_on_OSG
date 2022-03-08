@@ -34,10 +34,10 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
       3j-->4;
       3k-->4;
       3l-->4;
-      4-->5([Model averaging])
-      5-->6([Model projection to past climate])
-      6-->7([Dynamic suitability landscape])
-      7-->8([visualization])
+      4-->5([Model averaging]);
+      5-->6([Model projection to past climate]);
+      6-->7([Dynamic suitability landscape]);
+      7-->8([visualization]);
 ```
 
 ## How to use it
