@@ -1,5 +1,5 @@
 universe               = vanilla
-executable             = ../src/DAG/3-sdm.sh
+executable             = ../src/DAG/4-sdm.sh
 
 Requirements           = HAS_SINGULARITY == TRUE
 +SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
@@ -9,6 +9,8 @@ WhenToTransferOutput   = ON_EXIT
 initialdir             = output-files
 
 transfer_input_files   = 1-gbif-occurrences 3-get-chelsa
+
+arguments                = $(timesID)
 
 transfer_output_files  =  sdm_outputs/suitability.tif, suitability.gif
 transfer_output_remaps = "sdm_outputs/suitability.tif = 3-sdm/suitability.tif" "suitability.gif = 3-sdm/suitability.gif"

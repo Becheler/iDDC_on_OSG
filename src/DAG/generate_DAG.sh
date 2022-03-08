@@ -53,7 +53,8 @@ do
    echo "PARENT GET-CHELSA$t CHILD SDM"
 done
 
-echo "JOB SDM        ../src/DAG/4-sdm.condor"
+echo "JOB  SDM ../src/DAG/4-sdm.condor"
+echo "VARS SDM timesID=\"${timesID// /,}\""
 
 for i in $(seq "$1")
 do
