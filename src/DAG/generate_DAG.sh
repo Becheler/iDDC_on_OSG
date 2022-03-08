@@ -46,6 +46,7 @@ echo "PARENT GET-GBIF CHILD VIS-GBIF"
 for t in "${timesID[@]}"
 do
    echo "SCRIPT PRE GET-CHELSA$t ../src/DAG/3-pre-script.sh output-files/3-get-chelsa"
+   echo "SCRIPT POST GET-CHELSA$t ../src/DAG/3-post-script.sh output-files/3-get-chelsa"
    echo "JOB GET-CHELSA$t ../src/DAG/3-get-chelsa.condor"
    echo "VARS GET-CHELSA$t t=\"$t\""
    echo "PARENT GET-GBIF CHILD GET-CHELSA$t"

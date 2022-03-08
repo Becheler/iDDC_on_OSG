@@ -7,3 +7,7 @@ python3 -m crumbs.get_chelsa \
       --margin 2.0 \
       --clip_dir 3-get-chelsa \
       --cleanup
+
+rm *.vrt
+rm *.tif
+mv 3-get-chelsa/* .
