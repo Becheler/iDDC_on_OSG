@@ -11,7 +11,7 @@ initialdir             = output-files
 arguments                = $(t)
 
 transfer_input_files   = ../../input-files/sampling-points/
-transfer_output_files  = 3-get-chelsa/
+transfer_output_files  = 3-get-chelsa
 
 output                 = 3-get-chelsa/3-get-chelsa$(t).out
 error                  = 3-get-chelsa/3-get-chelsa$(t).err
