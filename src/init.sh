@@ -1,6 +1,9 @@
 #!/bin/bash
 
 chmod u+x src/DAG/generate_DAG.sh
+chmod u+x src/DAG/3-pre-script.sh
+chmod u+x src/DAG/3-post-script.sh
+
 ln -s src/DAG/generate_DAG.sh generate_DAG
 
 ln -s src/post-analysis/get_param_table.sh get_param_table
