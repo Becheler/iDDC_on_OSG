@@ -10,4 +10,3 @@ python3 -m crumbs.get_chelsa \
 
 rm *.vrt
 rm *.tif
-mv 3-get-chelsa/* .
