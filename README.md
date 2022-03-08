@@ -5,21 +5,36 @@ for distributed High Throughput Computing.
 
 ## What problem does this project solve?
 
-Running iDDC model inference is a heavy task. You need a lot of different data, a lot of tools,
-a lot of computational fire power and a lot of scripting to glue all of this together.
+Running iDDC model inference is a heavy task. You need many different data,
+many tools, a lot of computational fire power and a lot of scripting to glue all of this together.
 
 That is not in the reach in many people interested in statistical phylogeography.
 
-Here we use this awesome HTC resource and we glue Quetzal tools (Quetzal-CoaTL,
-Quetzal-CRUMBS, Quetzal-EGGS and Quetzal-NEST) together for you, so you can run
-a spatially explicit inference more swiftly! Hopefully it
-will make your life easier and your iDDC goals more reachable.
+:gift: Here we use Open Science Grid, an awesome dHTC resource and we glue Quetzal tools (Quetzal-CoaTL,
+Quetzal-CRUMBS, Quetzal-EGGS and Quetzal-NEST) together, so you can run
+a spatially explicit inference more swiftly!
+
+Hopefully it will make your life easier and your iDDC goals more reachable.
 
 >  The [OSG](https://opensciencegrid.org/) is a consortium of research collaborations, campuses, national
 > laboratories and software providers dedicated to the advancement of all open
 > science via the practice of distributed High Throughput Computing (dHTC)
 
-## How to use
+## The pipeline
+
+```mermaid
+  graph TD;
+      1([Download GBIF observational data])-->2([visualize occurrences]);
+      1-->3i([Download CHELSA-Trace21k bioclimatic variables at t = 20th century ]);
+      1-->3j([Download CHELSA-Trace21k bioclimatic variables at t-i]);
+      1-->3k([Download CHELSA-Trace21k bioclimatic variables at t = -20.000y]);
+      3i-->4([Species Distribution Models averaging]);
+      3j-->4;
+      3k-->4;
+      4-->5([visualize suitability dynamics])
+```
+
+## How to use it
 
 ### Replicating the example results
 
