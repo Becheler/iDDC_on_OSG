@@ -24,14 +24,20 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
   graph TD;
-      1([Download GBIF observational data])-->2([visualize occurrences]);
-      1-->3i([Download CHELSA-Trace21k bioclimatic variables at t = 20th century ]);
-      1-->3j([Download CHELSA-Trace21k bioclimatic variables at t-i]);
-      1-->3k([Download CHELSA-Trace21k bioclimatic variables at t = -20.000y]);
-      3i-->4([Species Distribution Models averaging]);
+      1([Download GBIF observational data])-->2([visualization]);
+      1-->3([Download CHELSA-Trace21k bioclimatic variables]);
+      3-->3i((1900-1990));
+      3-->3j((1800-1899));
+      3-->3k((...-...));
+      3-->3l((-20.100 -20.001));
+      3i-->4([Species Distribution Model fitting]);
       3j-->4;
       3k-->4;
-      4-->5([visualize suitability dynamics])
+      3l-->4;
+      4-->5([Model averaging])
+      5-->6([Model projection to past climate])
+      6-->7([Dynamic suitability landscape])
+      7-->8([visualization])
 ```
 
 ## How to use it
