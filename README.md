@@ -24,7 +24,7 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
   graph TD;
-      A[(GBIF)]--|download|-->B(Occurrences)
+      A[(GBIF)]--|download|-->B(Occurrences);
       B-->C(["Visualization"]);
       D[(CHELSA)]--|download|-->E(babla);
 ```
