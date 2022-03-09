@@ -24,10 +24,6 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
 flowchart TD;
-  mermaid.flowchartConfig = {
-      width: 100%
-      height: auto
-  }
   
   start([START]) ---> margin & sample & species;
 
