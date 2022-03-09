@@ -28,13 +28,13 @@ explicit inference swiftly and without (too much) hassle!
 - [Quetzal-CRUMBS](https://github.com/Becheler/quetzal-CRUMBS)
 - [Quetzal-NEST](https://hub.docker.com/repository/docker/arnaudbecheler/quetzal-nest)
 
-## How to use it
+## How to use
 
-### Understand the pipeline
+### 1- Understand the pipeline
 
-:point_down::point_down::point_down: Have a look at the complete workflow illustrated down there!
+:point_down::point_down::point_down: Have a look at the complete workflow illustrated at the end of this page!
 
-### Replicating the example results
+### 2 - Replicate the example results
 
 1. You need [an account on Open Science Grid](https://opensciencegrid.org/).
 2. Then connect to your login node with e.g. `ssh user@login.osgconnect.net`
@@ -51,7 +51,7 @@ explicit inference swiftly and without (too much) hassle!
    - retrieve parameters table: `sh src/post-analysis/get_param_table.sh`
 9. Use ABC-RF package (CRAN) to perform inference!
 
-### Changing the user input
+### 3 - Try change the user input
 
 The following input files are defined by the user and should be placed in the `input_files` folder:
 
@@ -63,7 +63,7 @@ The following input files are defined by the user and should be placed in the `i
 - `sample.csv`: file mapping sampled gene copies IDS to their latitude longitude sampling points
 - `imap.txt`: IMAP file from BPP mapping individuals to putative populations for computing summary statistics
 
-### Debugging
+### 4 - Debugging :bug:
 
 * Check progress of scheduled jobs with `condor_q` or `condor_watch_q`
 * If a job fails, check `cat *out` to see if there is any executable path error.
@@ -72,6 +72,10 @@ The following input files are defined by the user and should be placed in the `i
     - use `condor_q -better-analyze <JOB-ID>` to check for bug reasons (generally wrong paths or files not found)
 
 ## The pipeline :see_no_evil:
+
+- In green, the user inputs
+- In blue, databases that are fetched or built
+- In purple, the main output of this workflow
 
 ```mermaid
 flowchart TD;
