@@ -24,8 +24,9 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
   graph TD;
-      1(["Download GBIF observational data"])-->2(["Visualization"]);
-      1---->3(["Download CHELSA-Trace21k bioclimatic variables"]);
+      A[(GBIF)]--|download|-->B(Occurrences)
+      B-->C(["Visualization"]);
+      D[(CHELSA)]--|download|-->E(babla)
 ```
 
 ## How to use it
