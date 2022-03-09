@@ -24,60 +24,82 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
 flowchart TD;
-  O[Sampling point<br /> latitude/longitude]--> A & D
-  A[(GBIF)]-- download -->B(Occurrences);
-  B-->C(Visualization)
-  D[(CHELSA)]-- download -->E(Bioclimatic layers);
-
-  subgraph periods
-      F1(1990)
-      F2(...)
-      F3(t)
-      F4(...)
-      F5("-21000")
+  %%O[Sampling point<br /> latitude/longitude]--> B & D
+  subgraph 1-get-gbif.sh
+      A[(GBIF)]-- crumbs.get_gbif -->B(occurrences.shp);
   end
 
-  E-- world files -->F1 & F2 & F3 & F4 & F5
-  F1 -- crop to landscape --> G(Species Distribution Modeling)
-  B --> G
+  B--->2-visualize-gbif.sh
 
-  subgraph classifiers
-      H1((Random<br />Forest))
-      H2((Extra<br />Trees))
-      H3((XGB))
-      H4((LGB))
+  subgraph 2-visualize-gbif.sh
+      C([occurences.mp4])
   end
 
-  G --fitting--> H1 & H2 & H3 & H4
-  H1 -- interpolation --> I1[pred4]
-  H2 -- interpolation --> I2[pred3]
-  H3 -- interpolation --> I3[pred2]
-  H4 -- interpolation --> I4[pred1]
-  I1 & I2 & I3 & I4 -.- II(Averaging) --> K1
+  subgraph 3-get-chelsa.sh
+      D[(CHELSA)]-- crumbs.get_chelsa -->E("Bioclimatic variables<br>(world files)");
+      E-->F1 & F2 & F3 & F4 & F5
 
-  classifiers --extrapolation<br> and<br>averaging-.-> past
-
-  subgraph suitability
-      subgraph present
-          K1(1990)
+      subgraph world files
+          F1(1990)
+          F2(...)
+          F3(t)
+          F4(...)
+          F5("-21000")
       end
-      subgraph past
-          F2-.->K2(...)
-          F3-.->K3(t)
-          F4-.->K4(...)
-          F5-.->K5("-21000")
+
+      subgraph landscape files
+          F1--crop-->FF1(1990)
+          F2--crop-->FF2(...)
+          F3--crop-->FF3(t)
+          F4--crop-->FF4(...)
+          F5--crop-->FF5("-21000")
+      end
+
+  end
+
+  FF1------>G
+
+  subgraph "4-sdm.sh"
+
+      subgraph classifiers
+          H1((Random<br />Forest))
+          H2((Extra<br />Trees))
+          H3((XGB))
+          H4((LGB))
+      end
+
+      B---->G(ENM/SDM)
+      G --fitting--> H1 & H2 & H3 & H4
+      H1 -- interpolation --> I1[pred4]
+      H2 -- interpolation --> I2[pred3]
+      H3 -- interpolation --> I3[pred2]
+      H4 -- interpolation --> I4[pred1]
+
+      I1 & I2 & I3 & I4 -- averaging -->K1
+
+      subgraph suitability
+          subgraph present
+              K1(1990)
+          end
+          subgraph past        
+              FF2-.->K2(...)
+              FF3-.->K3(t)
+              FF4-.->K4(...)
+              FF5-.->K5("-21000")
+          end
       end
   end
 
-  suitability-->suit(multiband geotiff landscape)
-  suit-->L(Visualization)
-  suit-->M(Circular cropping)
-  M-->M1(Visualization)
-  M-->N(Down/Up scaling)
-  N-->N1(Visualization)
+  %%classifiers--extrapolation-->past
+  suitability--crumbs.to_geotiff-->suit(Dynamic landscape file)
+  suit-- crumbs.animate -->L(Visualization)
+  suit--crumbs.circle_mask-->M(Circular landscape)
+  M-- crumbs.animate -->M1(Visualization)
+  M-- crumbs.rotate_and_rescale -->N(Finer/Coarser landscape)
+  N--crumbs.animate-->N1(Visualization)
   N-->P(Quetzal EGG)
   Q(configuration file)-->P
-  R(Parameter sampling)-->P
+  R(Parameters)--crumbs.sample-->P
 ```
 
 
