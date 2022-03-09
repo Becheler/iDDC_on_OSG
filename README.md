@@ -23,12 +23,47 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ## The pipeline
 
 ```mermaid
-  graph TD;
-      A[(GBIF)]--|download|-->B(Occurrences);
-      B-->C;
+graph TD;
+    O[Sampling point<br /> latitude/longitude]--> A & D
+    A[(GBIF)]-- download -->B(Occurrences);
+    B-->C(Visualization)
+    D[(CHELSA)]-- download -->E(Bioclimatic layers);
+
+    subgraph time periods
+      F1(1990)
+      F2(...)
+      F3(t)
+      F4(...)
+      F5("-21000")
+    end
+
+    E-- world files -->F1 & F2 & F3 & F4 & F5
+    F1 -- crop to landscape --> G(Species Distribution Modeling)
+    B --> G
+
+    subgraph classifiers
+      H1((Random<br />Forest))
+      H2((Extra<br />Trees))
+      H3((XGB))
+      H4((LGB))
+    end
+
+    G --fitting--> H1 & H2 & H3 & H4
+    H1 -- interpolation --> I1( )
+    H2 -- interpolation --> I2( )
+    H3 -- interpolation --> I3( )
+    H4 -- interpolation --> I4( )
+    I1 & I2 & I3 & I4 --averaging--> K1
+
+    subgraph suitability
+      K1(1990)
+      K2(...)
+      F3-->K3(t)
+      K4(...)
+      K5("-21000")
+    end
 ```
 
-D[(CHELSA)]--|download|-->E(babla);
 
 ## How to use it
 
