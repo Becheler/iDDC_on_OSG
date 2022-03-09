@@ -1,4 +1,1 @@
-mermaid.flowchartConfig = {
-    width: 100%
-    height: auto
-}
+.mermaid svg { height: auto; }
