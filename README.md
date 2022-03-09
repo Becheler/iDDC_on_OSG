@@ -26,8 +26,9 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
   graph TD;
       A[(GBIF)]--|download|-->B(Occurrences);
       B-->C;
-      D[(CHELSA)]--|download|-->E(babla);
 ```
+
+D[(CHELSA)]--|download|-->E(babla);
 
 ## How to use it
 
