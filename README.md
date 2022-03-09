@@ -36,10 +36,10 @@ flowchart TD;
   end
 
   subgraph 3-get-chelsa.sh
-      D[(CHELSA)]-- crumbs.get_chelsa -->E("Bioclimatic variables<br>(world files)");
-      E-->F1 & F2 & F3 & F4 & F5
+      D[(CHELSA)]-- crumbs.get_chelsa ---E("User-defined list of bioclimatic variables and times");
+      E-. download -.-F1 & F2 & F3 & F4 & F5
 
-      subgraph world files
+      subgraph world
           F1(1990)
           F2(...)
           F3(t)
@@ -47,12 +47,12 @@ flowchart TD;
           F5("-21000")
       end
 
-      subgraph landscape files
-          F1--crop-->FF1(1990)
-          F2--crop-->FF2(...)
-          F3--crop-->FF3(t)
-          F4--crop-->FF4(...)
-          F5--crop-->FF5("-21000")
+      subgraph landscape
+          F1-. crop -.-FF1(1990)
+          F2-. crop -.-FF2(...)
+          F3-. crop -.-FF3(t)
+          F4-. crop -.-FF4(...)
+          F5-. crop -.-FF5("-21000")
       end
 
   end
@@ -69,28 +69,28 @@ flowchart TD;
       end
 
       B---->G(ENM/SDM)
-      G --fitting--> H1 & H2 & H3 & H4
+      G --fitting--- H1 & H2 & H3 & H4
       H1 -- interpolation --> I1[pred4]
       H2 -- interpolation --> I2[pred3]
       H3 -- interpolation --> I3[pred2]
       H4 -- interpolation --> I4[pred1]
 
-      I1 & I2 & I3 & I4 -- averaging -->K1
+      I1 & I2 & I3 & I4 -- averaging ---K1
 
       subgraph suitability
           subgraph present
               K1(1990)
           end
-          subgraph past        
+          subgraph past
               FF2-.->K2(...)
               FF3-.->K3(t)
               FF4-.->K4(...)
               FF5-.->K5("-21000")
           end
       end
+      classifiers--extrapolation<br>and<br>averaging-->past
   end
 
-  %%classifiers--extrapolation-->past
   suitability--crumbs.to_geotiff-->suit(Dynamic landscape file)
   suit-- crumbs.animate -->L(Visualization)
   suit--crumbs.circle_mask-->M(Circular landscape)
