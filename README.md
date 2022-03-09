@@ -30,6 +30,10 @@ explicit inference swiftly and without (too much) hassle!
 
 ## How to use it
 
+### Understand the pipeline
+
+:point_down::point_down::point_down: Have a look at the complete workflow illustrated down there!
+
 ### Replicating the example results
 
 1. You need [an account on Open Science Grid](https://opensciencegrid.org/).
