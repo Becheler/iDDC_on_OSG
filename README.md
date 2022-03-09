@@ -24,9 +24,22 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 
 ```mermaid
 flowchart TD;
-  %%O[Sampling point<br /> latitude/longitude]--> B & D
+
+  classDef userInput fill:#6ad98b,stroke:#333,stroke-width:2px;
+  classDef database fill:#66deff,stroke:#333,stroke-width:2px;
+
+  margin[/"margin buffer<br>(in degrees)"/]--infers---bbox[extent];
+  sample[/"sampling points<br>(shapefile)"/]--infers---bbox[spatial extent];
+  species[/"species name"/]--->1-get-gbif.sh;
+  class margin userInput;
+  class sample userInput;
+  class species userInput;
+
+  bbox --> landscape & 1-get-gbif.sh;
+
   subgraph 1-get-gbif.sh
       A[(GBIF)]-- crumbs.get_gbif -->B(occurrences.shp);
+      class A database;
   end
 
   B--->2-visualize-gbif.sh
@@ -36,8 +49,10 @@ flowchart TD;
   end
 
   subgraph 3-get-chelsa.sh
-      D[(CHELSA)]-- crumbs.get_chelsa ---E("User-defined list of bioclimatic variables and times");
-      E-. download -.-F1 & F2 & F3 & F4 & F5
+      D[(CHELSA)]-- crumbs.get_chelsa ---E[/"bioclimatic variables and times"/];
+      class D database;
+      class E userInput;
+      E-. download -.-F1 & F2 & F3 & F4 & F5;
 
       subgraph world
           F1(1990)
@@ -100,8 +115,6 @@ flowchart TD;
   N-->P(Quetzal EGG)
   Q(configuration file)-->P
   R(Parameters)--crumbs.sample-->P
-
-
 ```
 
 
