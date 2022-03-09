@@ -82,13 +82,13 @@ flowchart TD;
               K1(1990)
           end
           subgraph past
-              FF2-.->K2(...)
-              FF3-.->K3(t)
-              FF4-.->K4(...)
-              FF5-.->K5("-21000")
+              FF2-.-K2(...)
+              FF3-.-K3(t)
+              FF4-.-K4(...)
+              FF5-.-K5("-21000")
           end
       end
-      classifiers--extrapolation<br>and<br>averaging---past
+      classifiers--extrapolation<br>and<br>averaging-->past
   end
 
   suitability--crumbs.to_geotiff-->suit(Dynamic landscape file)
@@ -100,6 +100,8 @@ flowchart TD;
   N-->P(Quetzal EGG)
   Q(configuration file)-->P
   R(Parameters)--crumbs.sample-->P
+
+
 ```
 
 
