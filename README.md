@@ -3,6 +3,16 @@
 iDDC modeling and inference using the Quetzal framework on Open Science Grid
 for distributed High Throughput Computing (dHTC).
 
+> :bulb: The [OSG](https://opensciencegrid.org/) is a consortium of research collaborations, campuses, national
+> laboratories and software providers dedicated to the advancement of all open
+> science via the practice of distributed High Throughput Computing (dHTC)
+
+> :bulb: Quetzal is a suit of tools I developed for iDDC modeling, including:
+- [Quetzal-CoaTL](https://github.com/Becheler/quetzal-CoaTL)
+- [Quetzal-EGGS](https://github.com/Becheler/quetzal-EGGS)
+- [Quetzal-CRUMBS](https://github.com/Becheler/quetzal-CRUMBS)
+- [Quetzal-NEST](https://hub.docker.com/repository/docker/arnaudbecheler/quetzal-nest)
+
 ## What problem does this project solve?
 
 :rocket: Running an iDDC inference workflow is an ambitious task. You need many different data,
@@ -17,16 +27,6 @@ and distribute its jobs across the Open Science Grid so you can run a spatially
 explicit inference swiftly and without (too much) hassle!
 
 :rainbow: Hopefully it will make your life easier and your iDDC goals more reachable.
-
->  The [OSG](https://opensciencegrid.org/) is a consortium of research collaborations, campuses, national
-> laboratories and software providers dedicated to the advancement of all open
-> science via the practice of distributed High Throughput Computing (dHTC)
-
-> Quetzal is a suit of tools I developed for iDDC modeling, including:
-- [Quetzal-CoaTL](https://github.com/Becheler/quetzal-CoaTL)
-- [Quetzal-EGGS](https://github.com/Becheler/quetzal-EGGS)
-- [Quetzal-CRUMBS](https://github.com/Becheler/quetzal-CRUMBS)
-- [Quetzal-NEST](https://hub.docker.com/repository/docker/arnaudbecheler/quetzal-nest)
 
 ## How to use
 
