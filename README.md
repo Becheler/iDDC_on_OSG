@@ -39,7 +39,7 @@ flowchart TD;
   class sample userInput;
   class species userInput;
 
-  bbox --> landscape & 1-get-gbif.sh;
+  bbox --> 3-get-chelsa.sh & 1-get-gbif.sh;
 
   subgraph 1-get-gbif.sh
       A[(GBIF)]-- crumbs.get_gbif -->B(occurrences.shp);
@@ -154,8 +154,24 @@ flowchart TD;
       class config userInput;
       hyperparameters[/hyperparameters/]--crumbs.sample-->params[parameters];
       class hyperparameters userInput;
-      params-->EGG
+      params-->EGG;
+      sample2[/"sampling points<br>(shapefile)"/]-->EGG;
+      class sample2 userInput;
+      EGG-. n distributed lineages simulations .->output[(output.db)];
+      class output database;
   end
+
+  subgraph 11-post-treatment
+      output-- crumbs.simulate_phylip_sequences<br>crumbs.phylip2arlequin-->pods[pseudo-observed data];
+      pods--arlsumstats-->sumstats(summary statistics);
+      output-- crumbs.retrieve_parameters -->paramtable(reference table);
+      sumstats & paramtable --> ABCRF(ABC Random Forest);
+  end
+  ABCRF-->posterior>posterior distribution] & imp>variable importance] & error>mean squarred error];
+  class posterior movie;
+  class imp movie;
+  class error movie;
+  posterior & imp & error --> theend([END]);
 ```
 
 
