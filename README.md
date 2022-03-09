@@ -88,7 +88,7 @@ flowchart TD;
               FF5-.->K5("-21000")
           end
       end
-      classifiers--extrapolation<br>and<br>averaging-->past
+      classifiers--extrapolation<br>and<br>averaging---past
   end
 
   suitability--crumbs.to_geotiff-->suit(Dynamic landscape file)
