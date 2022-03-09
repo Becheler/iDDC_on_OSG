@@ -23,14 +23,12 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ## The pipeline
 
 ```mermaid
-
-mermaid.flowchartConfig = {
-    width: 100%
-    height: auto
-}
-
 flowchart TD;
-
+  mermaid.flowchartConfig = {
+      width: 100%
+      height: auto
+  }
+  
   start([START]) ---> margin & sample & species;
 
   classDef userInput fill:#6ad98b,stroke:#333,stroke-width:2px;
