@@ -23,7 +23,11 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ## The pipeline
 
 ```mermaid
-.mermaid svg { height: auto; }
+
+mermaid.flowchartConfig = {
+    width: 100%
+    height: auto
+}
 
 flowchart TD;
 
