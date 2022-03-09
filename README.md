@@ -23,45 +23,61 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ## The pipeline
 
 ```mermaid
-graph TD;
-    O[Sampling point<br /> latitude/longitude]--> A & D
-    A[(GBIF)]-- download -->B(Occurrences);
-    B-->C(Visualization)
-    D[(CHELSA)]-- download -->E(Bioclimatic layers);
+flowchart TD;
+  O[Sampling point<br /> latitude/longitude]--> A & D
+  A[(GBIF)]-- download -->B(Occurrences);
+  B-->C(Visualization)
+  D[(CHELSA)]-- download -->E(Bioclimatic layers);
 
-    subgraph time periods
+  subgraph periods
       F1(1990)
       F2(...)
       F3(t)
       F4(...)
       F5("-21000")
-    end
+  end
 
-    E-- world files -->F1 & F2 & F3 & F4 & F5
-    F1 -- crop to landscape --> G(Species Distribution Modeling)
-    B --> G
+  E-- world files -->F1 & F2 & F3 & F4 & F5
+  F1 -- crop to landscape --> G(Species Distribution Modeling)
+  B --> G
 
-    subgraph classifiers
+  subgraph classifiers
       H1((Random<br />Forest))
       H2((Extra<br />Trees))
       H3((XGB))
       H4((LGB))
-    end
+  end
 
-    G --fitting--> H1 & H2 & H3 & H4
-    H1 -- interpolation --> I1( )
-    H2 -- interpolation --> I2( )
-    H3 -- interpolation --> I3( )
-    H4 -- interpolation --> I4( )
-    I1 & I2 & I3 & I4 --averaging--> K1
+  G --fitting--> H1 & H2 & H3 & H4
+  H1 -- interpolation --> I1[pred4]
+  H2 -- interpolation --> I2[pred3]
+  H3 -- interpolation --> I3[pred2]
+  H4 -- interpolation --> I4[pred1]
+  I1 & I2 & I3 & I4 -.- II(Averaging) --> K1
 
-    subgraph suitability
-      K1(1990)
-      K2(...)
-      F3-->K3(t)
-      K4(...)
-      K5("-21000")
-    end
+  classifiers --extrapolation<br> and<br>averaging-.-> past
+
+  subgraph suitability
+      subgraph present
+          K1(1990)
+      end
+      subgraph past
+          F2-.->K2(...)
+          F3-.->K3(t)
+          F4-.->K4(...)
+          F5-.->K5("-21000")
+      end
+  end
+
+  suitability-->suit(multiband geotiff landscape)
+  suit-->L(Visualization)
+  suit-->M(Circular cropping)
+  M-->M1(Visualization)
+  M-->N(Down/Up scaling)
+  N-->N1(Visualization)
+  N-->P(Quetzal EGG)
+  Q(configuration file)-->P
+  R(Parameter sampling)-->P
 ```
 
 
