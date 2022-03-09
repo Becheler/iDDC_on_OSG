@@ -25,12 +25,16 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ```mermaid
 flowchart TD;
 
+  start([START]) ---> margin & sample & species;
+
   classDef userInput fill:#6ad98b,stroke:#333,stroke-width:2px;
   classDef database fill:#66deff,stroke:#333,stroke-width:2px;
+  classDef movie fill:#eb96eb,stroke:#333,stroke-width:2px;
 
-  margin[/"margin buffer<br>(in degrees)"/]--infers---bbox[extent];
-  sample[/"sampling points<br>(shapefile)"/]--infers---bbox[spatial extent];
+  margin[/"margin buffer<br>(in degrees)"/]--infers---bbox[spatial extent];
+  sample[/"sampling points<br>(shapefile)"/]--infers---bbox;
   species[/"species name"/]--->1-get-gbif.sh;
+
   class margin userInput;
   class sample userInput;
   class species userInput;
@@ -42,10 +46,11 @@ flowchart TD;
       class A database;
   end
 
-  B--->2-visualize-gbif.sh
+  B--crumbs.animate-->2-visualize-gbif.sh;
 
   subgraph 2-visualize-gbif.sh
-      C([occurences.mp4])
+      C>occurences.mp4];
+      class C movie;
   end
 
   subgraph 3-get-chelsa.sh
@@ -55,66 +60,102 @@ flowchart TD;
       E-. download -.-F1 & F2 & F3 & F4 & F5;
 
       subgraph world
-          F1(1990)
-          F2(...)
-          F3(t)
-          F4(...)
-          F5("-21000")
+          F1(1990);
+          F2(...);
+          F3(t);
+          F4(...);
+          F5("-21000");
       end
 
       subgraph landscape
-          F1-. crop -.-FF1(1990)
-          F2-. crop -.-FF2(...)
-          F3-. crop -.-FF3(t)
-          F4-. crop -.-FF4(...)
-          F5-. crop -.-FF5("-21000")
+          F1-. crop -.-FF1(1990);
+          F2-. crop -.-FF2(...);
+          F3-. crop -.-FF3(t);
+          F4-. crop -.-FF4(...);
+          F5-. crop -.-FF5("-21000");
       end
 
   end
 
-  FF1------>G
+  FF1------>G;
 
   subgraph "4-sdm.sh"
 
       subgraph classifiers
-          H1((Random<br />Forest))
-          H2((Extra<br />Trees))
-          H3((XGB))
-          H4((LGB))
+          H1((Random<br />Forest));
+          H2((Extra<br />Trees));
+          H3((XGB));
+          H4((LGB));
       end
 
-      B---->G(ENM/SDM)
-      G --fitting--- H1 & H2 & H3 & H4
-      H1 -- interpolation --> I1[pred4]
-      H2 -- interpolation --> I2[pred3]
-      H3 -- interpolation --> I3[pred2]
-      H4 -- interpolation --> I4[pred1]
+      B---->G(crumbs.sdm);
+      G --fitting--- H1 & H2 & H3 & H4;
+      H1 -- interpolation --> I1[pred4];
+      H2 -- interpolation --> I2[pred3];
+      H3 -- interpolation --> I3[pred2];
+      H4 -- interpolation --> I4[pred1];
 
-      I1 & I2 & I3 & I4 -- averaging ---K1
+      I1 & I2 & I3 & I4 -- averaging ---K1;
 
       subgraph suitability
           subgraph present
-              K1(1990)
+              K1(1990);
           end
           subgraph past
-              FF2-.-K2(...)
-              FF3-.-K3(t)
-              FF4-.-K4(...)
-              FF5-.-K5("-21000")
+              FF2-.-K2(...);
+              FF3-.-K3(t);
+              FF4-.-K4(...);
+              FF5-.-K5("-21000");
           end
       end
-      classifiers--extrapolation<br>and<br>averaging-->past
+      classifiers--extrapolation<br>and<br>averaging-->past;
+      suitability--crumbs.to_geotiff-->suit-file[multiband suitability raster];
+
   end
 
-  suitability--crumbs.to_geotiff-->suit(Dynamic landscape file)
-  suit-- crumbs.animate -->L(Visualization)
-  suit--crumbs.circle_mask-->M(Circular landscape)
-  M-- crumbs.animate -->M1(Visualization)
-  M-- crumbs.rotate_and_rescale -->N(Finer/Coarser landscape)
-  N--crumbs.animate-->N1(Visualization)
-  N-->P(Quetzal EGG)
-  Q(configuration file)-->P
-  R(Parameters)--crumbs.sample-->P
+  subgraph 5-visualize-sdm
+      L>suitability.mp4];
+      class L movie;
+  end
+
+  suit-file-- crumbs.animate --> 5-visualize-sdm;
+
+  subgraph 6-gis
+      suit-file-- crumbs.interpolat -->interpolated("interpolate missing bands along time axis<br>(1 band per generation)");
+      interpolated-- crumbs.circle_mask --> circular(circular landscape)
+      circular-- crumbs.rotate_and_rescale -->rotated-rescaled(Finer/Coarser rotated landscape);
+
+  end
+
+  subgraph 7-visualize-temporal-interpolation
+      interpolated2>suitability-interpolated.mp4];
+      class interpolated2 movie;
+  end
+
+  subgraph 8-visualize-circular-landscape
+      circular2>suitability-circular.mp4];
+      class circular2 movie;
+  end
+
+  subgraph 9-visualize-rotated-rescaled
+      rotated2>suitability-rotated-rescaled.mp4];
+      class rotated2 movie;
+  end
+
+  interpolated-- crumbs.animate --> 7-visualize-temporal-interpolation;
+  circular-- crumbs.animate --> 8-visualize-circular-landscape;
+  rotated-rescaled-- crumbs.animate --> 9-visualize-rotated-rescaled;
+
+  rotated-rescaled --> EGG;
+
+  subgraph 10-EGG
+      EGG(Quetzal EGG);
+      config[/configuration file/]-->EGG;
+      class config userInput;
+      hyperparameters[/hyperparameters/]--crumbs.sample-->params[parameters];
+      class hyperparameters userInput;
+      params-->EGG
+  end
 ```
 
 
