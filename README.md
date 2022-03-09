@@ -23,6 +23,8 @@ Hopefully it will make your life easier and your iDDC goals more reachable.
 ## The pipeline
 
 ```mermaid
+.mermaid svg { height: auto; }
+
 flowchart TD;
 
   start([START]) ---> margin & sample & species;
