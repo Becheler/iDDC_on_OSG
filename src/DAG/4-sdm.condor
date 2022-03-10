@@ -12,12 +12,12 @@ transfer_input_files   = 1-gbif-occurrences 3-get-chelsa
 
 arguments                = $(timesID)
 
-transfer_output_files  =  sdm_outputs/suitability.tif, suitability.gif
-transfer_output_remaps = "sdm_outputs/suitability.tif = 3-sdm/suitability.tif" "suitability.gif = 3-sdm/suitability.gif"
+transfer_output_files  =  sdm_outputs/suitability.tif
+transfer_output_remaps = "sdm_outputs/suitability.tif = 4-sdm/suitability.tif"
 
-output                 = 3-sdm.out
-error                  = 3-sdm.err
-log                    = 3-sdm.log
+output                 = 4-sdm.out
+error                  = 4-sdm.err
+log                    = 4-sdm.log
 
 request_cpus           = 1
 

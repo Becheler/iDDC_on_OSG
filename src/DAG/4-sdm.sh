@@ -9,6 +9,3 @@ python3 -m crumbs.sdm \
       --cleanup \
       --clip_dir 3-get-chelsa \
       --output suitability.tif
-
-python3 -m crumbs.animate sdm_outputs/suitability.tif \
-      --output suitability.gif

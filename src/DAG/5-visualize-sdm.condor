@@ -1,0 +1,21 @@
+universe               = vanilla
+executable             = ../src/DAG/5-visualize-sdm.sh
+
+Requirements           = HAS_SINGULARITY == TRUE
++SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
+
+should_transfer_files  = YES
+WhenToTransferOutput   = ON_EXIT
+initialdir             = output-files
+
+transfer_input_files   = 4-sdm/suitability.tif
+
+transfer_output_files  = suitability.gif
+
+output                 = 5-visualize-sdm.out
+error                  = 5-visualize-sdm.err
+log                    = 5-visualize-sdm.log
+
+request_cpus           = 1
+
+queue

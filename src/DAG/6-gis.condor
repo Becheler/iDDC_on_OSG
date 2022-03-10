@@ -1,0 +1,21 @@
+universe               = vanilla
+executable             = ../src/DAG/6-gis.sh
+
+Requirements           = HAS_SINGULARITY == TRUE
++SingularityImage      = "/cvmfs/singularity.opensciencegrid.org/arnaudbecheler/quetzal-nest:latest"
+
+should_transfer_files  = YES
+WhenToTransferOutput   = ON_EXIT
+initialdir             = output-files
+
+transfer_input_files   = 4-sdm/suitability.tif
+
+arguments              = $(timesID)
+
+output                 = 6-gis.out
+error                  = 6-gis.err
+log                    = 6-gis.log
+
+request_cpus           = 1
+
+queue
