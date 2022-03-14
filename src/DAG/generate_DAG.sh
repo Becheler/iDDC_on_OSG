@@ -33,7 +33,7 @@ fi
 # Read parameters
 nb_sim=$1
 shift
-nb_rep=$1
+nb_retry=$1
 shift
 timesID=("$@")
 
@@ -45,11 +45,13 @@ echo "PARENT GET-GBIF CHILD VIS-GBIF"
 
 for t in "${timesID[@]}"
 do
+   echo "PARENT GET-GBIF CHILD GET-CHELSA$t"
    echo "SCRIPT PRE GET-CHELSA$t ../src/DAG/3-pre-script.sh output-files/3-get-chelsa"
-   echo "SCRIPT POST GET-CHELSA$t ../src/DAG/3-post-script.sh output-files/3-get-chelsa"
+
    echo "JOB GET-CHELSA$t ../src/DAG/3-get-chelsa.condor"
    echo "VARS GET-CHELSA$t t=\"$t\""
-   echo "PARENT GET-GBIF CHILD GET-CHELSA$t"
+
+   echo "SCRIPT POST GET-CHELSA$t ../src/DAG/3-post-script.sh output-files/3-get-chelsa"
    echo "PARENT GET-CHELSA$t CHILD SDM"
 done
 
@@ -62,7 +64,7 @@ do
    echo "VARS A$i i=\"$i\""
    echo "PARENT SDM CHILD A$i"
 
-   echo "Retry A$i $nb_rep"
+   echo "Retry A$i $nb_retry"
 
    echo "JOB B$i ../src/DAG/B.condor NOOP"
    echo "VARS B$i i=\"$i\""
