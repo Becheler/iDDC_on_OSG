@@ -58,7 +58,7 @@ done
 echo "JOB  SDM ../src/DAG/4-sdm.condor"
 
 comma_separated_timesID=$(IFS=, ; echo "${timesID[*]}")
-echo "VARS SDM timesID=${comma_separated_timesID[@]}"
+echo "VARS SDM timesID=\"${comma_separated_timesID[@]}\""
 
 for i in $(seq "$nb_sim")
 do
