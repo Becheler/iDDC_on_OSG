@@ -56,13 +56,13 @@ done
 echo "JOB  SDM ../src/DAG/4-sdm.condor"
 echo "VARS SDM timesID=\"${timesID// /,}\""
 
-for i in $(seq "$1")
+for i in $(seq "$nb_sim")
 do
    echo "JOB A$i ../src/DAG/A.condor NOOP"
    echo "VARS A$i i=\"$i\""
    echo "PARENT SDM CHILD A$i"
 
-   echo "Retry A$i $2"
+   echo "Retry A$i $nb_rep"
 
    echo "JOB B$i ../src/DAG/B.condor NOOP"
    echo "VARS B$i i=\"$i\""
