@@ -12,6 +12,10 @@ done
 # From space delimited to comma separated
 generations=${generations// /,}
 
+# Virtual display
+export DISPLAY=:0
+Xvfb :0 -screen 0 1024x768x24
+
 python3 -m crumbs.interpolate suitability.tif --timesID $generations -o 6a-interpolated.tif
 python3 -m crumbs.animate 6a-suitability-interpolated.tif -o 6a-suitability-interpolated.gif
 
