@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# silencing matplotlib warning
+MPLCONFIGDIR="/tmp"
+export MPLCONFIGDIR
+
 python3 -m crumbs.get_gbif \
       --species "Heteronotia binoei" \
       --points sampling-points.shp \
