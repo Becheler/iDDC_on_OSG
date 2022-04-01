@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 -m crumbs.sdm \
-      --presence 1-gbif-occurrences/occurrences.shp \
+      --presence occurrences/occurrences.shp \
       --variables dem \
       --background 200 \
       --times $1 \
