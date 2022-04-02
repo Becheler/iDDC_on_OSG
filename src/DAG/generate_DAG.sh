@@ -72,3 +72,5 @@ do
    echo "VARS B$i i=\"$i\""
    echo "PARENT A$i CHILD B$i"
 done
+
+echo "DOT dag.dot"
