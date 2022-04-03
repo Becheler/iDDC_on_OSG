@@ -16,6 +16,7 @@ output                 = 5-visualize-sdm.out
 error                  = 5-visualize-sdm.err
 log                    = 5-visualize-sdm.log
 
+request_memory         = 12GB
+request_disk           = 12GB
 request_cpus           = 1
-
 queue

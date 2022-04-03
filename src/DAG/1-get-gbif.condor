@@ -17,6 +17,7 @@ output                 = 1-get-gbif.out
 error                  = 1-get-gbif.err
 log                    = 1-get-gbif.log
 
+request_memory         = 1GB
+request_disk           = 1GB
 request_cpus           = 1
-
 queue

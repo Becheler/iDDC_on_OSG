@@ -17,6 +17,8 @@ output                 = 3-get-chelsa/3-get-chelsa$(t).out
 error                  = 3-get-chelsa/3-get-chelsa$(t).err
 log                    = 3-get-chelsa/3-get-chelsa$(t).log
 
+request_memory         = 1GB
+request_disk           = 1GB
 request_cpus           = 1
 
 queue

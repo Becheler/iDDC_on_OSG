@@ -17,6 +17,7 @@ output                 = 2-visualize-gbif.out
 error                  = 2-visualize-gbif.err
 log                    = 2-visualize-gbif.log
 
+request_memory         = 2GB
+request_disk           = 2GB
 request_cpus           = 1
-
 queue
