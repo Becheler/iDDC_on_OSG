@@ -3,7 +3,7 @@
 python3 -m crumbs.sdm \
       --presence 1-gbif-occurrences/occurrences.shp \
       --variables dem \
-      --background 200 \
+      --background 2000 \
       --times $1 \
       --margin 2.0 \
       --cleanup \
